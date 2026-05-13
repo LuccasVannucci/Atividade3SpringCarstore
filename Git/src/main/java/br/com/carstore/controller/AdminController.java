@@ -3,6 +3,7 @@ package br.com.carstore.controller;
 import br.com.carstore.dto.CarDTO;
 import br.com.carstore.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +29,7 @@ public class AdminController {
         return "admin/index";
 
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/admin/cars")
     public String createCar(CarDTO carDTO, BindingResult result) {
 
@@ -53,6 +54,7 @@ public class AdminController {
         return "admin/dashboard";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin/cars/edit")
     public String editCar(@RequestParam("id") String id, Model model) {
 
@@ -68,7 +70,7 @@ public class AdminController {
         return "admin/index";
 
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/admin/cars/delete")
     public String deleteCar(@RequestParam("id") String id, Model model) {
 

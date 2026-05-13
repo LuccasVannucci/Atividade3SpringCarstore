@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
@@ -15,7 +16,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
-@EnableWebSecurity
+
+@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig {
 
     private final JwtRequestFilter jwtRequestFilter;
@@ -94,6 +96,7 @@ public class SecurityConfig {
     }
 
     // Este método deve ser adicionado DENTRO da classe SecurityConfig
+    /*
     @Bean
     public org.springframework.security.core.userdetails.UserDetailsService users(PasswordEncoder passwordEncoder) {
 
@@ -110,5 +113,6 @@ public class SecurityConfig {
         return new org.springframework.security.provisioning.InMemoryUserDetailsManager(user);
 
     }
-
+       */
 }
+
